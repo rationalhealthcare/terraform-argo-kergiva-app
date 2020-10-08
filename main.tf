@@ -18,15 +18,16 @@ module "kergiva_app" {
   automated_self_heal     = local.automated_self_heal
   automated_prune         = local.automated_prune
   helm_values = yamldecode(templatefile("${path.module}/values.yml", {
-    replicas          = var.replicas
-    image_repo        = var.image_repo
-    image_name        = var.image_name
-    image_tag         = var.image_tag
-    image_pull_secret = var.image_pull_secret
-    service_name      = local.service_name
-    service_port      = local.service_port
-    service_protocol  = local.service_protocol
-    a
+    replicas            = var.replicas
+    image_repo          = var.image_repo
+    image_name          = var.image_name
+    image_tag           = var.image_tag
+    image_pull_secret   = var.image_pull_secret
+    service_name        = local.service_name
+    service_port        = local.service_port
+    service_protocol    = local.service_protocol
+    automated_self_heal = local.automated_self_heal
+    automated_prune     = local.automated_prune
   }))
   route_rules = [
     {
