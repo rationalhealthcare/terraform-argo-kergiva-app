@@ -47,7 +47,7 @@ variable "image_repo" {
 }
 variable "image_name" {
   type    = string
-  default = "rationalhealthcare/vuetest2/kergiva-app"
+  default = "rationalhealthcare/vuetify2/appdash"
 }
 variable "image_tag" {
   type    = string
