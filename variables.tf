@@ -60,3 +60,6 @@ variable "labels" {
   type    = map(string)
   default = {}
 }
+variable "api_service_endpoint" {
+  type = string
+}
