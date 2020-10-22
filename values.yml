@@ -36,8 +36,8 @@ deployments:
           - mountPath: /var/cache
             name: cache-volume
     environment_variables:
-      API_ENDPOINT: ${api_service_endpoint}
-      NGINX_PORT: 80
+      API_ENDPOINT: "${api_service_endpoint}"
+      NGINX_PORT: "80"
     volume_mounts:
       site-config: /etc/nginx/conf.d/
       cache-volume: /var/cache
@@ -47,9 +47,6 @@ deployments:
         container_port: ${service_port}
         protocol: ${service_protocol}
 volumes:
-  - name: nginx-config
-    configMap:
-      name: kergiva-org-app-site-configmap
   - name: site-config
     configMap:
       name: kergiva-org-app-site-configmap
@@ -57,9 +54,6 @@ volumes:
     emptyDir: {}
   - name: run-volume
     emptyDir: {}
-  - name: database-config
-    configMap:
-      name: kergiva-org-app-database-configmap
 nodeSelector: {}
 tolerations: []
 affinity: {}
