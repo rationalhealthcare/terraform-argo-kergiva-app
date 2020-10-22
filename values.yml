@@ -36,7 +36,7 @@ deployments:
           - mountPath: /var/cache
             name: cache-volume
     environment_variables:
-      VUE_APP_API_ENDPOINT: "${api_service_endpoint}"
+      VUE_APP_API_ENDPOINT: ${api_service_endpoint}
       NGINX_PORT: "80"
     volume_mounts:
       site-config: /etc/nginx/conf.d/
