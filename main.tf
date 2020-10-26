@@ -1,3 +1,26 @@
+# This will ensure that a change to the database connection info will trigger the creation of a new configmap...
+# which will require an update in the deployment which Argo will be looking for.
+resource "random_id" "app_env" {
+  keepers = {
+    api_service_endpoint     = var.api_service_endpoint
+  }
+  byte_length = 2
+}
+
+resource "kubernetes_secret" "kergiva_app_env" {
+  metadata {
+    name      = "kergiva-database-secret-${random_id.app_env.hex}"
+    namespace = var.namespace
+    labels = {
+      "app.kubernetes.io/managed-by" = "terraform"
+    }
+  }
+  data = {
+    ".env.local" = templatefile("${path.module}/templates/env.local.tmpl", {
+      api_service_endpoint = random_id.app_env.keepers.api_service_endpoint
+    })
+  }
+}
 
 module "kergiva_app" {
   source = "github.com/turnbros/terraform-octal-http-application"
