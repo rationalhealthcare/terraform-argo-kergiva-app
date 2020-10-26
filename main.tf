@@ -55,7 +55,7 @@ module "kergiva_app" {
   }))
   route_rules = [
     {
-      match_rule = "Host(`${var.domain_name}`)"
+      match_rule = "Host(`${var.domain_name}`) && Path(`/dashboard`)"
       services = [
         {
           namespace = var.namespace
